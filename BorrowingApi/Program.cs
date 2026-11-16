@@ -1,9 +1,13 @@
+using BorrowingApi.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite("Data Source=borrowing.db"));
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
