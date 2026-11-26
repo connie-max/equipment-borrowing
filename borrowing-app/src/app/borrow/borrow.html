@@ -1,0 +1,37 @@
+<!-- borrow.html — the Borrow page, AUREL style. -->
+<!-- One page, one job: borrow one item. -->
+<div class="max-w-2xl mx-auto p-6">
+  <a routerLink="/items" class="text-gray-500 hover:text-[#ff6b1a] font-semibold">← Back to Items</a>
+
+  <p class="text-xs font-bold tracking-widest text-gray-500 mb-2 mt-6">BORROWING SYSTEM</p>
+  <h1 class="text-4xl font-black mb-2">BORROW <span class="text-[#ff6b1a]">ITEM</span></h1>
+  <p class="text-gray-600 mb-6">Fill in the dates and purpose, then send the request. An admin approves it next.</p>
+
+  <!-- The item being borrowed. -->
+  <div *ngIf="item()" class="card-hover bg-white border border-gray-200 rounded-2xl shadow-sm p-4 mb-6 flex gap-4 items-center">
+    <div class="flex-1">
+      <p class="font-black text-lg">{{ item()?.name }}</p>
+      <p class="text-gray-500 text-sm">{{ item()?.description }}</p>
+      <p class="text-gray-500 text-sm">{{ item()?.type }}</p>
+    </div>
+    <span class="bg-orange-100 text-[#ff6b1a] text-sm font-bold px-3 py-1 rounded-full">{{ item()?.status }}</span>
+  </div>
+
+  <!-- The form: only shown once the item has loaded. -->
+  <div *ngIf="item()" class="bg-white border border-gray-300 rounded-2xl shadow p-4 mb-6">
+    <h2 class="text-xl font-black mb-4">Borrow: {{ item()?.name }}</h2>
+    <label class="block mb-2">Date needed
+      <input [(ngModel)]="dateNeeded" type="date" [min]="today" class="block w-full border rounded-lg p-2">
+    </label>
+    <label class="block mb-2">Return date
+      <input [(ngModel)]="returnDate" type="date" [min]="dateNeeded || today" class="block w-full border rounded-lg p-2">
+    </label>
+    <label class="block mb-4">Purpose
+      <input [(ngModel)]="purpose" class="block w-full border rounded-lg p-2" placeholder="Class presentation">
+    </label>
+    <button (click)="sendRequest()" class="bg-[#ff6b1a] text-white px-4 py-2 rounded-full font-bold">Send request</button>
+    <a routerLink="/items" class="underline ml-2">Cancel</a>
+  </div>
+
+  <p *ngIf="message()" class="bg-orange-50 border border-orange-200 text-[#c2410c] rounded-2xl p-4 mb-6">{{ message() }}</p>
+</div>

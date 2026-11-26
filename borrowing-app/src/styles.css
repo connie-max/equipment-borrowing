@@ -1,1 +1,44 @@
 @import 'tailwindcss';
+
+/* AUREL-style look: white background, big black bold headings,
+   orange accent, black pill buttons. Clean and simple. */
+body {
+  background-color: #ffffff;
+  color: #111111;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Top bar: the link of the page you are on gets an orange
+   underline, so you always know where you are. Hovering a
+   link turns it orange too. */
+.nav-link {
+  padding-bottom: 2px;
+  border-bottom: 3px solid transparent;
+}
+.nav-link:hover {
+  color: #ff6b1a;
+}
+.nav-link.active {
+  color: #ff6b1a;
+  border-bottom-color: #ff6b1a;
+}
+
+/* Cards: lift a little and get a stronger shadow on hover,
+   so it is clear they are the things you look at and click. */
+.card-hover {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+}
+
+/* Buttons: darken a little on hover, so it is clear they
+   can be clicked. */
+button {
+  transition: filter 0.15s ease;
+  cursor: pointer;
+}
+button:hover {
+  filter: brightness(0.9);
+}

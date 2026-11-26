@@ -1,2 +1,14 @@
-<h1 class="text-3xl font-bold text-blue-600 p-6">Borrowing System</h1>
+<!-- app.html — the top bar, AUREL style: white, black text, orange dot. -->
+<nav class="bg-white text-black px-6 py-3 flex gap-4 items-center border-b border-gray-200">
+  <span class="font-black text-lg tracking-tight">BORROWING <span class="text-[#ff6b1a]">SYSTEM</span></span>
+  <!-- Green dot when the live SignalR connection is open. -->
+  <span *ngIf="realtime.connected()" class="text-sm font-bold text-green-700" title="Live updates are on">● Live</span>
+  <a *ngIf="currentUser()" routerLink="/items" routerLinkActive="active" class="nav-link font-semibold">Items</a>
+  <a *ngIf="currentUser()" routerLink="/requests" routerLinkActive="active" class="nav-link font-semibold">Requests</a>
+  <span class="ml-auto" *ngIf="currentUser() as user">
+    {{ user.name }} ({{ user.role }})
+    <button (click)="logout()" class="underline ml-2">Log out</button>
+  </span>
+  <a routerLink="/login" *ngIf="!currentUser()" class="ml-auto bg-black text-white px-4 py-2 rounded-full font-bold">Log in <span class="text-[#ff6b1a]">●</span></a>
+</nav>
 <router-outlet />
